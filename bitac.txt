@@ -1,0 +1,49 @@
+inicio: docker start -a lastsecret_api
+docker-compose up --build
+
+
+por mejorar main.py
+eliminación automática en GET (si aún no lo haces),
+
+soporte real de passphrase (ya definido en schema),
+
+modularización (separar negocio de controladores),
+
+logs/monitoreo para ver cuándo se crean/revelan/borran secretos.
+
+models.py
+
+TTL expiración exacta y variable ver parra agregar
+
+Pashprhase realya está definido, pero la API aún no valida passphrase al revelar
+ErrorOut más detallado
+
+
+
+security.pyPassphrase opcional
+
+Actualmente solo cifras con la clave generada aleatoriamente.
+
+Para implementar passphrase: combinarla con AES usando PBKDF2 o HKDF para derivar la clave.
+
+Persistencia de integridad
+
+AES-GCM ya protege la integridad de los datos, pero podrías almacenar un hash adicional (SHA256) por seguridad extra.
+
+Documentación / Tipado
+
+Ya tienes docstrings, pero podrías tipar mejor encode_base64 y decode_base64 con bytes | str para mayor claridad.
+
+Random más seguro
+
+os.urandom es seguro, pero en entornos críticos podrías usar secrets.token_bytes que está más orientado a criptografía de alta seguridad.
+
+
+
+
+docker composeFacilita levantar la app y Redis de manera rápida y reproducible.
+
+Mejoras sugeridas: separación dev/prod, healthcheck, logging, variables sensibles y network personalizado para escalabilidad futura.
+
+
+

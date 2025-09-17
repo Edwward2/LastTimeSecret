@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  redis:
+    image: redis:7
+    container_name: lastsecret_redis # Renombrado
+    ports:
+      - "6379:6379"
+    restart: always
+    volumes:
+      - redis_data:/data # Persistencia de datos (opcional)
+
+  api:
+    build: .
+    container_name: lastsecret_api # Renombrado
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - .:/app # Monta el código local en el contenedor (útil en desarrollo)
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+    environment:
+      REDIS_URL: redis://redis:6379/0
+
+volumes:
+  redis_data: # Define el volumen para Redis
