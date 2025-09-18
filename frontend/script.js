@@ -1,6 +1,9 @@
+//  CONFIGURACIÓN 
 const API_URL = "http://localhost:8000/api/secrets";
 
-// Crear secreto
+//  FUNCIONES PRINCIPALES 
+
+// Crear un secreto
 async function createSecret() {
     const text = document.getElementById("secretInput").value;
     if (!text) {
@@ -19,26 +22,26 @@ async function createSecret() {
         }) // 1 hora
     });
 
+    const resultEl = document.getElementById("createResult");
+    const copyBtn = document.getElementById("copyBtn");
+
     if (response.ok) {
         const data = await response.json();
         const url = `http://localhost:8000${data.url}`; // URL completa
+        resultEl.textContent = `✅ Secreto guardado. URL: ${url}`;
 
-        document.getElementById("createResult").textContent =
-            `✅ Secreto guardado. URL: ${url}`;
-
-        // Mostrar botón copiar
-        const copyBtn = document.getElementById("copyBtn");
+        // Mostrar botón copiar y guardar URL
         copyBtn.style.display = "inline-block";
-        copyBtn.dataset.url = url; // Guardamos URL en el botón
+        copyBtn.dataset.url = url;
     } else {
-        document.getElementById("createResult").textContent =
-            "❌ Error al guardar el secreto";
+        resultEl.textContent = "❌ Error al guardar el secreto";
     }
 }
 
-// Revelar secreto
+// Revelar un secreto
 async function getSecret() {
     let id = document.getElementById("secretId").value.trim();
+    const resultEl = document.getElementById("getResult");
 
     if (!id) {
         alert("Ingresa un ID");
@@ -51,8 +54,7 @@ async function getSecret() {
     }
 
     if (!id) {
-        document.getElementById("getResult").textContent =
-            "❌ ID o URL no válido.";
+        resultEl.textContent = "❌ ID o URL no válido.";
         return;
     }
 
@@ -61,19 +63,17 @@ async function getSecret() {
     });
 
     if (response.status === 404) {
-        document.getElementById("getResult").textContent =
-            "❌ Secreto no encontrado o expirado.";
+        resultEl.textContent = "❌ Secreto no encontrado o expirado.";
         return;
     }
 
     if (!response.ok) {
-        document.getElementById("getResult").textContent =
-            "❌ Error al revelar el secreto.";
+        resultEl.textContent = "❌ Error al revelar el secreto.";
         return;
     }
 
     const data = await response.json();
-    document.getElementById("getResult").textContent = `✅ Secreto: ${data.secret}`;
+    resultEl.textContent = `✅ Secreto: ${data.secret}`;
 }
 
 // Copiar URL al portapapeles

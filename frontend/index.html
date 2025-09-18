@@ -2,17 +2,20 @@
 <html lang="es">
 
 <head>
+    <!--  METADATOS  -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LastSecret - MVP</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h1>LastSecret - Prueba MVP</h1>
+    <!--  ENCABEZADO  -->
+    <h1>LastSecret - MVP</h1>
 
-    <!-- Crear secreto -->
-    <section>
+    <!--  SECCIÓN: Crear secreto  -->
+    <section id="createSecretSection">
         <h2>Crear secreto</h2>
         <textarea id="secretInput" placeholder="Escribe tu secreto..."></textarea>
         <button onclick="createSecret()">Guardar</button>
@@ -20,15 +23,15 @@
         <button id="copyBtn" style="display:none;" onclick="copyURL()">Copiar URL</button>
     </section>
 
-    <!-- Revelar secreto -->
-    <section>
+    <!--  SECCIÓN: Revelar secreto  -->
+    <section id="revealSecretSection">
         <h2>Revelar secreto</h2>
         <input type="text" id="secretId" placeholder="ID del secreto">
         <button onclick="getSecret()">Revelar</button>
         <p id="getResult"></p>
     </section>
 
-    <!-- JS -->
+    <!--  SCRIPTS  -->
     <script src="script.js"></script>
 </body>
 

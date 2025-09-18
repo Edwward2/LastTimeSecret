@@ -1,3 +1,4 @@
+/*  ESTILOS GENERALES  */
 body {
   font-family: Arial, sans-serif;
   margin: 2rem;
@@ -8,6 +9,7 @@ h1 {
   color: #333;
 }
 
+/*  SECCIONES  */
 section {
   background: #fff;
   padding: 1rem;
@@ -16,7 +18,9 @@ section {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-textarea, input {
+/*  CAMPOS DE TEXTO  */
+textarea,
+input {
   width: 100%;
   padding: 8px;
   margin: 8px 0;
@@ -24,6 +28,7 @@ textarea, input {
   border: 1px solid #ccc;
 }
 
+/*  BOTONES  */
 button {
   background: #007bff;
   color: #fff;
